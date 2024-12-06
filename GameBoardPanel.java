@@ -1,13 +1,23 @@
+/**
+ * ES234317-Algorithm and Data Structures
+ * Semester Ganjil, 2024/2025
+ * Group Capstone Project
+ * Group #14
+ * 1 - 5026231009 - Bernadetta Graciela
+ * 2 - 5026231021 - Zaskia Muazatun Mahmud
+ * 3 - 5026231080 - Binar Faisha Wijdan
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class GameBoardPanel extends JPanel {
-    private static final long serialVersionUID = 1L;  // to prevent serial warning
+    private static final long serialVersionUID = 1L; // to prevent serial warning
 
     // Define named constants for UI sizes
-    public static final int CELL_SIZE = 60;   // Cell width/height in pixels
-    public static final int BOARD_WIDTH  = CELL_SIZE * SudokuConstants.GRID_SIZE;
+    public static final int CELL_SIZE = 60; // Cell width/height in pixels
+    public static final int BOARD_WIDTH = CELL_SIZE * SudokuConstants.GRID_SIZE;
     public static final int BOARD_HEIGHT = CELL_SIZE * SudokuConstants.GRID_SIZE;
     // Board width/height in pixels
 
@@ -19,25 +29,25 @@ public class GameBoardPanel extends JPanel {
 
     /** Constructor */
     public GameBoardPanel() {
-        super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));  // JPanel
+        super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE)); // JPanel
 
         // Allocate the 2D array of Cell, and added into JPanel.
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
                 cells[row][col] = new Cell(row, col);
-                super.add(cells[row][col]);   // JPanel
+                super.add(cells[row][col]); // JPanel
             }
         }
 
         // [TODO 3] Allocate a common listener as the ActionEvent listener for all the
-        //  Cells (JTextFields)
+        // Cells (JTextFields)
         CellInputListener listener = new CellInputListener();
 
         // [TODO 4] Adds this common listener to all editable cells
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
                 if (cells[row][col].isEditable()) {
-                    cells[row][col].addActionListener(listener);   // For all editable rows and cols
+                    cells[row][col].addActionListener(listener); // For all editable rows and cols
                 }
             }
         }
@@ -80,7 +90,7 @@ public class GameBoardPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Get a reference of the JTextField that triggers this action event
-            Cell sourceCell = (Cell)e.getSource();
+            Cell sourceCell = (Cell) e.getSource();
 
             // Retrieve the int entered
             int numberIn = Integer.parseInt(sourceCell.getText());
@@ -94,22 +104,19 @@ public class GameBoardPanel extends JPanel {
              * and re-paint the cell via sourceCell.paint().
              */
             if (numberIn == sourceCell.number) {
-               sourceCell.status = CellStatus.CORRECT_GUESS;
+                sourceCell.status = CellStatus.CORRECT_GUESS;
             } else {
-               sourceCell.status = CellStatus.WRONG_GUESS;
+                sourceCell.status = CellStatus.WRONG_GUESS;
             }
-            sourceCell.paint();   // re-paint this cell based on its status
+            sourceCell.paint(); // re-paint this cell based on its status
 
             /*
              * [TODO 6] (later)
              * Check if the player has solved the puzzle after this move,
-             *   by calling isSolved(). Put up a congratulation JOptionPane, if so.
+             * by calling isSolved(). Put up a congratulation JOptionPane, if so.
              */
-            if(isSolved()) JOptionPane.showMessageDialog(null, "Congratulation!");
-        }
-
-        public void keyTyped(KeyEvent e){
-
+            if (isSolved())
+                JOptionPane.showMessageDialog(null, "Congratulation!");
         }
     }
 }

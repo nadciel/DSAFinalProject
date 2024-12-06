@@ -1,3 +1,13 @@
+/**
+ * ES234317-Algorithm and Data Structures
+ * Semester Ganjil, 2024/2025
+ * Group Capstone Project
+ * Group #14
+ * 1 - 5026231009 - Bernadetta Graciela
+ * 2 - 5026231021 - Zaskia Muazatun Mahmud
+ * 3 - 5026231080 - Binar Faisha Wijdan
+ */
+
 import javax.swing.*;
 import javax.swing.text.*;
 import java.text.NumberFormat;
@@ -15,7 +25,6 @@ class Input extends PlainDocument {
 
     @Override
     public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-
         if (str == null) {
             return;
         }

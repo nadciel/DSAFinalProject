@@ -1,3 +1,13 @@
+/**
+ * ES234317-Algorithm and Data Structures
+ * Semester Ganjil, 2024/2025
+ * Group Capstone Project
+ * Group #14
+ * 1 - 5026231009 - Bernadetta Graciela
+ * 2 - 5026231021 - Zaskia Muazatun Mahmud
+ * 3 - 5026231080 - Binar Faisha Wijdan
+ */
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -37,7 +47,7 @@ public class Sudoku extends JFrame {
         //menginisialisasi layout frame
         cp.add(board, BorderLayout.CENTER);
 
-        //Add a button to the south to re-start the game via board.newGame()
+        //Add a button to the south to re-start the game
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(btnNewGame);
         buttonPanel.add(timerLabel);
@@ -45,7 +55,7 @@ public class Sudoku extends JFrame {
 
         //membuat menu bar
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("Menu");
+        JMenu menu = new JMenu("Quit");
         JMenuItem quit = new JMenuItem("Quit");
         setJMenuBar(menuBar);
 
@@ -71,6 +81,7 @@ public class Sudoku extends JFrame {
 
         pack();     // Pack the UI components, instead of using setSize()
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // to handle window-closing
+        setLocationRelativeTo(null);
         setTitle("Sudoku");
         setVisible(true);
     }
