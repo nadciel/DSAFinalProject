@@ -41,7 +41,6 @@ public class GameBoardPanel extends JPanel {
                 }
             }
         }
-
         super.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     }
 
@@ -107,6 +106,10 @@ public class GameBoardPanel extends JPanel {
              *   by calling isSolved(). Put up a congratulation JOptionPane, if so.
              */
             if(isSolved()) JOptionPane.showMessageDialog(null, "Congratulation!");
+        }
+
+        public void keyTyped(KeyEvent e){
+
         }
     }
 }
