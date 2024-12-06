@@ -1,3 +1,4 @@
+
 /**
  * ES234317-Algorithm and Data Structures
  * Semester Ganjil, 2024/2025
@@ -57,10 +58,11 @@ public class GameBoardPanel extends JPanel {
     /**
      * Generate a new puzzle; and reset the game board of cells based on the puzzle.
      * You can call this method to start a new game.
+     * @param medium 
      */
-    public void newGame() {
+    public void newGame(Puzzle.DifficultyLevel medium) {
         // Generate a new puzzle
-        puzzle.newPuzzle(2);
+        puzzle = new Puzzle();
 
         // Initialize all the 9x9 cells, based on the puzzle.
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
@@ -91,32 +93,49 @@ public class GameBoardPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             // Get a reference of the JTextField that triggers this action event
             Cell sourceCell = (Cell) e.getSource();
-
-            // Retrieve the int entered
-            int numberIn = Integer.parseInt(sourceCell.getText());
-            // For debugging
-            System.out.println("You entered " + numberIn);
-
-            /*
-             * [TODO 5] (later - after TODO 3 and 4)
-             * Check the numberIn against sourceCell.number.
-             * Update the cell status sourceCell.status,
-             * and re-paint the cell via sourceCell.paint().
-             */
-            if (numberIn == sourceCell.number) {
-                sourceCell.status = CellStatus.CORRECT_GUESS;
-            } else {
-                sourceCell.status = CellStatus.WRONG_GUESS;
+            String textEntered = sourceCell.getText();
+            
+            try {
+                // Attempt to parse the input as an integer
+                int numberIn = Integer.parseInt(textEntered);
+    
+                // Check if the number is within the valid range (1-9)
+                if (numberIn < 1 || numberIn > 9) {
+                    JOptionPane.showMessageDialog(null, 
+                        "Please enter a valid number between 1 and 9", 
+                        "Invalid Input", 
+                        JOptionPane.WARNING_MESSAGE);
+                    sourceCell.setText(""); // Clear the invalid input
+                    return; // Stop further processing
+                }
+    
+                // Debugging output
+                System.out.println("You entered " + numberIn);
+    
+                // Check the number against sourceCell.number
+                if (numberIn == sourceCell.number) {
+                    sourceCell.status = CellStatus.CORRECT_GUESS;
+                } else {
+                    sourceCell.status = CellStatus.WRONG_GUESS;
+                }
+                sourceCell.paint(); // Repaint the cell based on its status
+            } catch (NumberFormatException ex) {
+                // Handle non-integer inputs
+                JOptionPane.showMessageDialog(null, 
+                    "Please enter a valid number between 1 and 9", 
+                    "Invalid Input", 
+                    JOptionPane.WARNING_MESSAGE);
+                sourceCell.setText(""); // Clear the invalid input
+                return; // Stop further processing
             }
-            sourceCell.paint(); // re-paint this cell based on its status
-
+                
             /*
-             * [TODO 6] (later)
-             * Check if the player has solved the puzzle after this move,
-             * by calling isSolved(). Put up a congratulation JOptionPane, if so.
-             */
+            * [TODO 6] (later)
+            * Check if the player has solved the puzzle after this move,
+            * by calling isSolved(). Put up a congratulation JOptionPane, if so.
+            */
             if (isSolved())
-                JOptionPane.showMessageDialog(null, "Congratulation!");
+            JOptionPane.showMessageDialog(null, "Congratulation!");
         }
     }
 }
