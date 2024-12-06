@@ -22,7 +22,7 @@ public class Puzzle {
     private Random random = new Random();
 
     // Constructor
-    public Puzzle(DifficultyLevel medium) {
+    public Puzzle() {
         super();
         newPuzzle(DifficultyLevel.MEDIUM);
     }

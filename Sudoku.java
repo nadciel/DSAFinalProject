@@ -73,10 +73,10 @@ public class Sudoku extends JFrame {
         });
 
         // Initialize the game board to start the game and timer
-        board.newGame(Puzzle.DifficultyLevel.MEDIUM);
+        board.newGame();
         initializeTimer();
         startTimer();
-        board.newGame(Puzzle.DifficultyLevel.MEDIUM);
+        board.newGame();
 
         pack();     // Pack the UI components, instead of using setSize()
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // to handle window-closing
@@ -88,7 +88,7 @@ public class Sudoku extends JFrame {
     //Method untuk start new game
     private void startNewGame(){
         restartTimer();
-        board.newGame(Puzzle.DifficultyLevel.MEDIUM);
+        board.newGame();
     }
 
     //Method untuk menginisialisasi timer

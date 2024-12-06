@@ -60,9 +60,10 @@ public class GameBoardPanel extends JPanel {
      * You can call this method to start a new game.
      * @param medium 
      */
-    public void newGame(Puzzle.DifficultyLevel medium) {
+    public void newGame() {
         // Generate a new puzzle
-        puzzle = new Puzzle(medium);
+        puzzle = new Puzzle();
+        puzzle.newPuzzle(Puzzle.DifficultyLevel.MEDIUM);
 
         // Initialize all the 9x9 cells, based on the puzzle.
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
