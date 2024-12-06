@@ -20,7 +20,7 @@ public class Cell extends JTextField {
 
     // Define properties (package-visible)
     /** The row and column number [0-8] of this cell */
-    int row, col;
+    private int row, col, value;
     /** The puzzle number [1-9] for this cell */
     int number;
     /** The status of this cell defined in enum CellStatus */
@@ -34,6 +34,20 @@ public class Cell extends JTextField {
         // Inherited from JTextField: Beautify all the cells once for all
         super.setHorizontalAlignment(JTextField.CENTER);
         super.setFont(FONT_NUMBERS);
+    }
+
+    public Cell(int row, int col, int value) {
+        this.row = row;
+        this.col = col;
+        this.value = value;
+    }
+
+    public int getRow() {
+        return row;
+    } public int getCol() {
+        return col;
+    } public int getValue() {
+        return value;
     }
 
     /** Reset this cell for a new game, given the puzzle number and isGiven */
