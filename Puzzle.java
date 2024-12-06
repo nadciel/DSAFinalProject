@@ -19,11 +19,12 @@ public class Puzzle {
     int[][] numbers = new int[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     // The clues - isGiven (no need to guess) or need to guess
     boolean[][] isGiven = new boolean[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
-    private Random random;
+    private Random random = new Random();
 
     // Constructor
-    public Puzzle() {
+    public Puzzle(DifficultyLevel medium) {
         super();
+        newPuzzle(DifficultyLevel.MEDIUM);
     }
 
     // Generate a new puzzle given the number of cells to be guessed, which can be

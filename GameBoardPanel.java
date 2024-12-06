@@ -26,7 +26,7 @@ public class GameBoardPanel extends JPanel {
     /** The game board composes of 9x9 Cells (customized JTextFields) */
     private Cell[][] cells = new Cell[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     /** It also contains a Puzzle with array numbers and isGiven */
-    private Puzzle puzzle = new Puzzle();
+    private Puzzle puzzle ;
 
     /** Constructor */
     public GameBoardPanel() {
@@ -62,7 +62,7 @@ public class GameBoardPanel extends JPanel {
      */
     public void newGame(Puzzle.DifficultyLevel medium) {
         // Generate a new puzzle
-        puzzle = new Puzzle();
+        puzzle = new Puzzle(medium);
 
         // Initialize all the 9x9 cells, based on the puzzle.
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
